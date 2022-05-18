@@ -121,21 +121,27 @@ function textValidate(input) {
 }
 
 function isSpecialChar(myText) {
-    let myTextLowerCase = myText.toLowerCase()
-    let charCode = 0
-  
-    for (let i in myTextLowerCase) {
-      charCode = myTextLowerCase.charCodeAt(i)
-      if (!(charCode > 47 && charCode < 58 || // números
-        charCode > 96 && charCode < 123 ||    // letras
-        charCode > 223 && charCode < 247 ||   // letras acentuadas
-        charCode > 248 && charCode < 383 ||   // letras acentuadas
-        charCode == 32)) { //espaço
-  
-        return true
-      }
+    for(let letra of myText) {
+        if (letra != ' ' && letra.toLowerCase() === letra.toUpperCase()) {
+            return true;
+        }
     }
-    return false
+
+    // let myTextLowerCase = myText.toLowerCase()
+    // let charCode = 0
+  
+    // for (let i in myTextLowerCase) {
+    //   charCode = myTextLowerCase.charCodeAt(i)
+    //   if (!(charCode > 47 && charCode < 58 || // números
+    //     charCode > 96 && charCode < 123 ||    // letras
+    //     charCode > 223 && charCode < 247 ||   // letras acentuadas
+    //     charCode > 248 && charCode < 383 ||   // letras acentuadas
+    //     charCode == 32)) { //espaço
+  
+    //     return true
+    //   }
+    // }
+    // return false
   }
 
 
