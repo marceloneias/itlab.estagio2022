@@ -1,0 +1,151 @@
+.navbar-brand{
+    font-family: 'Overpass', sans-serif;
+    font-size: x-large;
+}
+
+.container {
+    margin: 0 25%;
+}
+
+.form-row{
+    margin: 0;
+}
+
+.form-check {
+    display: inline;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 1.95em 0 1.95em;
+}
+
+.form-check-label {
+    margin-top: -5.5px;
+}
+
+.btn-sm {
+    width: 90px;
+    font-weight: bold;
+    padding: 0px;
+}
+
+#logo {
+    position: relative;
+    margin-top: -40px;
+}
+
+.card-perfil {
+    margin-top: -50px;
+    margin-right: 10em;
+    max-width: 540px;
+}
+
+.card-body {
+    padding: 0 10px 0 0;
+}
+
+.card-body h5, .card-body p {
+    margin: 0;
+}
+
+.card-text span {
+    font-weight: bold;
+}
+
+.tipo-entrada {
+    display: inline-block;
+}
+
+@media screen and (max-width: 420px) {
+
+    .container {
+        margin: 0 25%;
+        transform: translateX(-25%);
+    }
+
+    #registros{
+        display: none;
+    }
+
+    .jumbotron{
+        padding: 32px 0 16px 0;
+        margin-bottom: 0px;
+    }
+    #logo{
+        width: 35%;
+        top: -17%;
+        left: 50%;
+        transform: translate(-50%, 17%);
+    }
+    .card-perfil {
+        width: 100%;
+        top: 7px;
+    }
+
+    .card-perfil img{
+        display: block;
+    }
+}
+
+.toast {
+    position: absolute;
+    margin: 10px 50%;
+}
+
+.input-group-text{
+    width: 5.5em;
+}
+
+.toastPos {
+    height: 30px; 
+    position: absolute; 
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, -10%);
+}
+
+@media screen and (max-width: 580px) {
+
+    .jumbotron{
+        padding: 32px 0 16px 0;
+        margin-bottom: 0px;
+    }
+
+    .container {
+        margin: 0 25%;
+        transform: translateX(-25%);
+    }
+
+    #registros{
+        display: none;
+    }
+
+    #logo{
+        width: 35%;
+        top: -17%;
+        left: 50%;
+        transform: translate(-50%, 17%);
+    }
+    .card-perfil {
+        width: 100%;
+        margin: 0;
+    }
+
+}
+
+.toast {
+    position: absolute;
+    margin: 10px 50%;
+}
+
+@media screen and (max-width: 960px) {
+
+    .container {
+        margin: 0 25%;
+        transform: translateX(-25%);
+    }
+
+    #logo{
+        width: 35%;
+    }
+}
+

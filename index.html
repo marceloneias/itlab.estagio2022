@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Controle Financeiro Pessoal</title>
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/estilo.css">
+    <link href="https://fonts.googleapis.com/css2?family=Overpass:wght@600&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+</head>
+
+<body class="bg-light">
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand col-md-9" href="#">Finanças Pessoais</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse col-sm-3" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseTable"
+                            aria-expanded="false" aria-controls="collapseTable" id="registros">Registros</span></a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseProfile"
+                            aria-expanded="false" aria-controls="collapseProfile">Perfil</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Sair</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+    </header>
+
+
+    <div class=" jumbotron jumbotron-fluid bg-dark">
+
+        <img class="float-left img-fluid" src="assets/img/logoItLab.png" alt="Logo It Lab" id="logo">
+
+        <div class="collapse card mb-3 float-right card-perfil bg-light" id="collapseProfile">
+            <div class="row g-0">
+                <div class=" col-4 col-md-4">
+                    <img src="assets/img/foto_perfil.svg" class="img-fluid" alt="Foto de perfil">
+                </div>
+                <div class="col-8 col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">Informações gerais</h5>
+                        <p class="card-text">Denis de Carvalho Silva</p>
+                        <p class="card-text"><small class="text-muted">Total despesas: R$ <span
+                                    id="totDesp"></span></small></p>
+                        <p class="card-text"><small class="text-muted">Saldo total: R$ <span
+                                    id="totSaldo"></span></small></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Flexbox container for aligning the toasts -->
+    <div aria-live="polite" aria-atomic="true" class="d-flex justify-content-center align-items-center toastPos"
+        style="height: 30px; position: absolute; float: initial;">
+
+        <!-- Then put toasts within -->
+        <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" id="element" data-delay="10000">
+            <div class="toast-header">
+                <img src="assets/img/success-icon.png" style="max-width: 30px;" class="rounded mr-2"
+                    alt="Mensagem de registro">
+                <strong class="mr-auto">Finanças Pessoais</strong>
+                <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="toast-body">
+                Salvo com sucesso!
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="collapse table-responsive-md" id="collapseTable">
+            <div class="card card-body">
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Tipo</th>
+                            <th scope="col">Descrição</th>
+                            <th scope="col">Valor</th>
+                            <th scope="col">Desconto</th>
+                            <th scope="col">Data de Vencimento</th>
+                            <th scope="col">Data de Liquidação</th>
+                            <th scope="col">Origem</th>
+                        </tr>
+                    </thead>
+                    <tbody id="dados">
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <form onsubmit="return valida()" action="#" id="form" method="GET">
+            <fieldset class="tipo-entrada mb-2">
+                <legend class="my-1 mr-2 text-secondary" for="inlineFormCustomSelectPref">Selecione o tipo de entrada*
+                </legend>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="radio" id="radio1" value="Receita">
+                    <label class="form-check-label btn btn-success btn-sm" for="radio1">
+                        Receita
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="radio" id="radio2" value="Despesa" checked>
+                    <label class="form-check-label btn btn-warning btn-sm" for="radio2">
+                        Despesa
+                    </label>
+                </div>
+            </fieldset>
+
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Categoria</span>
+                        </div>
+                        <select class="form-control" name="sltCategoria" id="sltCategoria" data-tipo="sltCategoria" required>
+                            <option value="0"></option>
+                            <option value="1">Moradia</option>
+                            <option value="2">Supermercado</option>
+                            <option value="3">TV/Internet/Telefone</option>
+                            <option value="4">Transporte</option>
+                            <option value="5">Lazer</option>
+                            <option value="6">Saúde</option>
+                            <option value="7">Bares e restaurantes</option>
+                        </select>
+                        <span class="invalid-feedback"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group mb-6">
+                <label class="text-secondary" for="txtDescricao">Descrição*</label>
+                <input type="text" name="txtDescricao" class="form-control col-md-8" id="txtDescricao"
+                    placeholder="Ex.: Conta de telefone" data-tipo="txtDescricao" autocomplete="off" maxlength="80"
+                    required>
+                <span class="invalid-feedback"></span>
+            </div>
+            <div class="form-row mb-2">
+                <div class="form-group col-md-4">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Valor*</span>
+                        </div>
+                        <input type="text" class="form-control" id="txtValor" data-thousands="." data-decimal=","
+                            data-prefix="R$ " placeholder="R$ 0,00" data-tipo="txtValor" autocomplete="off" required>
+                        <span class="invalid-feedback"></span>
+                    </div>
+                </div>
+                <div class="form-group col-md-4">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Desconto</span>
+                        </div>
+                        <input type="text" class="form-control" id="txtDesconto" data-thousands="." data-decimal=","
+                            data-prefix="R$ " placeholder="R$ 0,00" data-tipo="txtDesconto" autocomplete="off">
+                        <span class="invalid-feedback"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-row data">
+                <div class="form-group col-md-3">
+                    <label class="text-secondary" for="dtVencimento">Data de vencimento*</label>
+                    <input type="date" class="form-control" id="dtVencimento" placeholder="dd/mm/aaaa"
+                        data-tipo="dtVencimento" required>
+                    <span class="invalid-feedback"></span>
+                </div>
+                <div class="form-group col-md-3">
+                    <label class="text-secondary" for="dtLiquidacao">Data de liquidação*</label>
+                    <input type="date" class="form-control" id="dtLiquidacao" placeholder="dd/mm/aaaa"
+                        data-tipo="dtLiquidacao" required>
+                    <span class="invalid-feedback"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="text-secondary" for="txtOrigem">Origem*</label>
+                <input type="text" class="form-control col-md-8" id="txtOrigem" placeholder="Ex.: Operadora XYZ"
+                    data-tipo="txtOrigem" autocomplete="off" maxlength="80" required>
+                <span class="invalid-feedback"></span>
+            </div>
+            <input type="submit" class="btn btn-primary btn-lg" id="btnRegistrar" value="Registrar">
+
+        </form>
+    </div>
+
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="assets/javascript/app.js" type="module"></script>
+<script src="https://github.com/codermarcos/simple-mask-money/releases/download/v3.0.0/simple-mask-money.js"></script>
+
+</html>
